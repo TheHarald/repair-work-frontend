@@ -1,0 +1,14 @@
+.form{
+    margin-top: 60px;
+    background: #FFFFFF;
+    box-sizing: border-box;
+    border: 1px solid #D7DBEC;
+    box-shadow: 0px 4px 25px rgba(161, 167, 196, 0.15);
+    border-radius: 10px;
+    width: 400px;
+    height: 600px;
+    padding: 25px 35px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
