@@ -1,4 +1,8 @@
-import { JsxElement } from "typescript";
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { Route, Routes } from "react-router-dom";
+import MainPage from "./pages/desktop/MainPage/MainPage";
+import StartPage from "./pages/desktop/StartPage/StartPage";
 
 function App() {
 
@@ -6,7 +10,10 @@ function App() {
 
   return (
     <div>
-      {/* {width>425?<NavigationBar/>:<TapBar/>} */}
+      <Routes>
+        <Route path="/" element={<StartPage/>}/>
+      </Routes>
+      
     </div>
   );
 }
