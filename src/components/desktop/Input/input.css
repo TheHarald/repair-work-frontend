@@ -13,8 +13,25 @@
 }
 
 .input__required{
-    color: #F0142F;;
+    color: #F0142F;
 }
+
+.input__field-textarea{
+    resize: vertical;
+    min-height: 100px;
+}
+
+.input__field-textarea::-webkit-scrollbar {
+    width: 8px;
+}
+
+.input__field-textarea::-webkit-resizer {
+    display: none;
+  }
+.input__field-textarea::-webkit-scrollbar-thumb {
+    background: #D7DBEC;
+    border-radius: 10px;
+  }
 
 .input__label{
     font-style: normal;
@@ -25,15 +42,25 @@
 }
 .input__field{
     box-sizing: border-box;
-
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     padding: 8px 16px;
     gap: 8px;
-
     border: 2px solid #ECF2FF;
     border-radius: 6px;
 }
+
+.input__interval-picker{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+}
+
+.time-picker{
+}
+
+
 

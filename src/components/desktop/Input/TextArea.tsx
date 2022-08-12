@@ -1,36 +1,38 @@
 import React from 'react';
-import "./input.css"
-import FileList3LineIcon from 'remixicon-react/FileList3LineIcon'
-import { RemixiconReactIconComponentType } from 'remixicon-react';
 import { handleChangeProps } from '../../../hooks/useForm';
+import "./input.css"
 
-type InputProps = {
+type TextAreaProps = {
     label:string,
     placeholder:string,
-    required:boolean
+    required:boolean,
     value:string,
     inputName:string
     onChange: (e:handleChangeProps)=>void
 }
 
-function Input(props:InputProps) {
+
+const test = ()=>{
+    console.log('test')
+} 
+
+function TextArea(props:TextAreaProps) {
     return (
         <div className='input'>
             <label className='input__label'>{props.label}
             {props.required?<span className='input__required'>*</span>:''}
             </label>
-            <input 
+            <textarea  
                 name={props.inputName}
-                className='input__field' 
-                type={"text"} 
-                placeholder={props.placeholder}
-                value={props.value}
                 onChange={props.onChange}
+                value={props.value}
+                className='input__field input__field-textarea' 
+                placeholder={props.placeholder}
                 >
-            </input>
+            </textarea>
             
         </div>
     );
 }
 
-export default Input;
+export default TextArea;
