@@ -1,4 +1,5 @@
 import React from 'react';
+import { login, WorkerLoginProps } from '../../../apiFunctions/requestFuntcions';
 import Button from '../../../components/desktop/Button/Button';
 import LinkButton from '../../../components/desktop/Button/LinkButton';
 import Card from '../../../components/desktop/Card/Card';
@@ -7,10 +8,7 @@ import Input from '../../../components/desktop/Input/Input';
 import Title2 from '../../../components/desktop/Title2/Title2';
 import { useForm } from '../../../hooks/useForm';
 
-type WorkerLoginProps = {
-    password:string,
-    login:string
-}
+
 
 function AuthPage() {
 
@@ -20,7 +18,8 @@ function AuthPage() {
     })
 
     function handleSubmit(){
-        alert(JSON.stringify(formData))
+        // alert(JSON.stringify(formData))
+        login(formData)
     }
 
 

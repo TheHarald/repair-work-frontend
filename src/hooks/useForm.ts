@@ -12,7 +12,7 @@ export function useForm<T>(initData:T){
 
     function handleChange(e:handleChangeProps):void{
         setFromData({...formData, [e.target.name]:e.target.value})
-        console.log(`${e.target.name} : ${e.target.value}`)
+        // console.log(`${e.target.name} : ${e.target.value}`)
     }
 
     return {formData,handleChange}
