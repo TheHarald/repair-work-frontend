@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { postRequest } from '../../../apiFunctions/requestFuntcions';
+import Button from '../../../components/desktop/Button/Button';
+import Card from '../../../components/desktop/Card/Card';
 import Header from '../../../components/desktop/Header/Header';
 import Input from '../../../components/desktop/Input/Input';
 import IntervalPicker from '../../../components/desktop/Input/IntervalPicker';
 import TextArea from '../../../components/desktop/Input/TextArea';
+import Title2 from '../../../components/desktop/Title2/Title2';
 import { useForm } from '../../../hooks/useForm';
 import "./createrequestpage.css"
 
@@ -35,7 +38,8 @@ function CreateRequestPage() {
         <div className='page'>
             <Header/>
             <div className='page__container'>
-                <div className='form'>
+                <Card>
+                    <Title2 text='Заполните поля и отправьте заявку на ремонт.'/>
                     <Input 
                         label='Фамилия имя отчество' 
                         placeholder='Введите ФИО'
@@ -76,15 +80,13 @@ function CreateRequestPage() {
                         requestData={requestData}
                         onChange={handleChange}
                     />
-                    <button 
-                        className='form__button' 
+                    <Button
+                        text='Отправить заявку'
                         type='submit'
-                        onClick={handleSubmit}
-                    >
-                        Отравить заявку
-                    </button>
-                   
-                </div>
+                        onClick={handleSubmit}  
+                    />
+                    
+                </Card>
             </div>
         </div>
     );

@@ -8,7 +8,7 @@
 }
 
 .header-container{
-    padding: 5px 50px;
+    padding: 10px 50px;
     min-width: 760px;
     display: flex;
     flex-direction: row;

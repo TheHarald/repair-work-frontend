@@ -1,0 +1,19 @@
+.button{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 16px;
+    gap: 10px;
+    background: #1E5EFF;
+    border-radius: 6px;
+    border: none;
+    color: #FFFFFF;
+}
+
+.link-button{
+    color: #1E5EFF;
+    font-size: 14px;
+    font-weight: 400;
+    text-decoration: none;
+}

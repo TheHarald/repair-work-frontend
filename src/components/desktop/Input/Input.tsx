@@ -9,7 +9,8 @@ type InputProps = {
     placeholder:string,
     required:boolean
     value:string,
-    inputName:string
+    inputName:string,
+    type?:string
     onChange: (e:handleChangeProps)=>void
 }
 
@@ -22,10 +23,11 @@ function Input(props:InputProps) {
             <input 
                 name={props.inputName}
                 className='input__field' 
-                type={"text"} 
+                type={props.type} 
                 placeholder={props.placeholder}
                 value={props.value}
                 onChange={props.onChange}
+                
                 >
             </input>
             
