@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { postRequest } from '../../../apiFunctions/requestFuntcions';
+import { postRequest, RequestData } from '../../../apiFunctions/requestFuntcions';
 import Button from '../../../components/desktop/Button/Button';
 import Card from '../../../components/desktop/Card/Card';
 import Header from '../../../components/desktop/Header/Header';
@@ -14,7 +14,7 @@ import "./createrequestpage.css"
 
 function CreateRequestPage() {
 
-    const {requestData, handleChange} = useForm({
+    const {formData, handleChange} = useForm<RequestData>({
         room:'',
         request_task:'',
         sender_FIO:'',
@@ -27,7 +27,7 @@ function CreateRequestPage() {
     const navigate = useNavigate()
 
     function handleSubmit(){
-        postRequest(requestData)
+        postRequest(formData)
         navigate('/')
 
     }
@@ -46,7 +46,7 @@ function CreateRequestPage() {
                         required={true}
                         inputName='sender_FIO'
                         onChange={handleChange}
-                        value={requestData.sender_FIO}
+                        value={formData.sender_FIO}
                     />
                     <Input 
                         label='Электронная почта' 
@@ -54,7 +54,7 @@ function CreateRequestPage() {
                         required={true}
                         inputName='email'
                         onChange={handleChange}
-                        value={requestData.email}
+                        value={formData.email}
                     />
                     <Input 
                         label='номер комнаты' 
@@ -62,7 +62,7 @@ function CreateRequestPage() {
                         required={true}
                         inputName='room'
                         onChange={handleChange}
-                        value={requestData.room}
+                        value={formData.room}
                     />
                     <TextArea
                         label='Причина заявки'
@@ -70,14 +70,14 @@ function CreateRequestPage() {
                         required={true}
                         inputName='request_task'
                         onChange={handleChange}
-                        value={requestData.request_task}
+                        value={formData.request_task}
                     />
                     <IntervalPicker
                         label='Интервал времени'
                         required={true}
                         startInputName='start_time_to_arrive'
                         endInputName='end_time_to_arrive'
-                        requestData={requestData}
+                        requestData={formData}
                         onChange={handleChange}
                     />
                     <Button

@@ -1,13 +1,4 @@
 import { useState } from 'react';
-export type RequestData = {
-    room:string,
-    request_task:string,
-    sender_FIO:string,
-    email:string,
-    status:string,
-    start_time_to_arrive:string,
-    end_time_to_arrive:string
-}
 
 export type handleChangeProps = React.ChangeEvent<HTMLInputElement> | 
                                 React.ChangeEvent<HTMLTextAreaElement> |
@@ -16,14 +7,13 @@ export type handleChangeProps = React.ChangeEvent<HTMLInputElement> |
 
 
 
-export function useForm(initData:RequestData){
-    const [requestData,setRequestData] = useState<RequestData>(initData)
+export function useForm<T>(initData:T){
+    const [formData,setFromData] = useState<T>(initData)
 
-    function handleChange(
-        e:handleChangeProps):void{
-        setRequestData({...requestData, [e.target.name]:e.target.value})
-        // console.log(`${e.target.name} : ${e.target.value}`)
+    function handleChange(e:handleChangeProps):void{
+        setFromData({...formData, [e.target.name]:e.target.value})
+        console.log(`${e.target.name} : ${e.target.value}`)
     }
 
-    return {requestData,handleChange}
+    return {formData,handleChange}
 }

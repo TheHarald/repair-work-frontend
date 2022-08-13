@@ -5,12 +5,26 @@ import Card from '../../../components/desktop/Card/Card';
 import Header from '../../../components/desktop/Header/Header';
 import Input from '../../../components/desktop/Input/Input';
 import Title2 from '../../../components/desktop/Title2/Title2';
+import { useForm } from '../../../hooks/useForm';
+
+type WorkerLoginProps = {
+    password:string,
+    login:string
+}
 
 function AuthPage() {
 
-    function handleSubmit(){
+    const {formData, handleChange } = useForm<WorkerLoginProps>({
+        password:'',
+        login:'' 
+    })
 
+    function handleSubmit(){
+        alert(JSON.stringify(formData))
     }
+
+
+
 
     return (
         <div className='page'>
@@ -22,17 +36,17 @@ function AuthPage() {
                         label='логин'
                         required={true}
                         placeholder='Введите логин'
-                        value='some'
-                        onChange={()=>{console.log('test')}}
-                        inputName="TEST"
+                        value={formData.login}
+                        onChange={handleChange}
+                        inputName="login"
                     />
                     <Input
                         label='пароль'
                         required={true}
                         placeholder='Введите пароль'
-                        value='some'
-                        onChange={()=>{console.log('test')}}
-                        inputName="TEST"
+                        value={formData.password}
+                        onChange={handleChange}
+                        inputName='password'
                         type='password'
                     />
 

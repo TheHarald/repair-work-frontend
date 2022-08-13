@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import { handleChangeProps, RequestData } from '../../../hooks/useForm';
+import { handleChangeProps} from '../../../hooks/useForm';
 import "./input.css"
 
 

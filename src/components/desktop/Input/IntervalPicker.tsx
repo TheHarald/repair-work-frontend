@@ -2,7 +2,8 @@ import React from 'react';
 import "./input.css"
 import TimePicker from './TimePicker';
 import ArrowRightLineIcon from 'remixicon-react/ArrowRightLineIcon'
-import { handleChangeProps, RequestData } from '../../../hooks/useForm';
+import { handleChangeProps} from '../../../hooks/useForm';
+import { RequestData } from '../../../apiFunctions/requestFuntcions';
 
 
 
