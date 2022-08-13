@@ -17,3 +17,21 @@
     font-weight: 400;
     text-decoration: none;
 }
+
+.close-button{
+    appearance: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 24px;
+    width: 24px;
+    background: #F5F6FA;
+    border-radius: 8px;
+}
+
+
+.close-button:hover{
+    background: #E6E9F4;
+
+}

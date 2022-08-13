@@ -6,7 +6,7 @@ import LinkButton from '../../../components/desktop/Button/LinkButton';
 import Card from '../../../components/desktop/Card/Card';
 import Header from '../../../components/desktop/Header/Header';
 import Input from '../../../components/desktop/Input/Input';
-import Title2 from '../../../components/desktop/Title2/Title2';
+import Title2 from '../../../components/desktop/Title/Title2';
 import { useForm } from '../../../hooks/useForm';
 
 
