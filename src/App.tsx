@@ -18,6 +18,7 @@ function App() {
         <Route path="/request" element={<CreateRequestPage/>}/>
         <Route path="/auth" element={<AuthPage/>}/>
         <Route path="/register" element={<RegisterPage/>}/>
+        <Route path="/main" element={<MainPage/>}/>
       </Routes>
       
     </div>

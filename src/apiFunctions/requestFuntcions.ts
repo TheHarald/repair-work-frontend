@@ -11,7 +11,6 @@ export type RequestData = {
     end_time_to_arrive:string
 }
 
-
 export type WorkerLoginProps = {
     password:string,
     login:string
@@ -27,6 +26,23 @@ export function postRequest(requestData:RequestData){
 
 export function login(loginData:WorkerLoginProps){
     axios.post(routes.login,loginData)
-        .then(response => console.log(response.data))
-        .catch(error => console.log(error))
+        .then(response => {
+            console.log(response.data)
+            localStorage.setItem('token',response.data)
+        })
+        .catch(error => {
+            console.log(error)
+        })
+    
+
+}
+
+export function getWorkerInfoByToken(){
+    const token =  localStorage.getItem('token')
+    axios.get(routes.workerInfo, {
+        headers: {
+            'Authorization': `Bearier ${token}`
+        }
+    }).then( response => console.log(response))
+        .catch( error => console.log(error))
 }

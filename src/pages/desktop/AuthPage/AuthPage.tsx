@@ -1,5 +1,6 @@
 import React from 'react';
-import { login, WorkerLoginProps } from '../../../apiFunctions/requestFuntcions';
+import { useNavigate } from 'react-router-dom';
+import { getWorkerInfoByToken, login, WorkerLoginProps } from '../../../apiFunctions/requestFuntcions';
 import Button from '../../../components/desktop/Button/Button';
 import LinkButton from '../../../components/desktop/Button/LinkButton';
 import Card from '../../../components/desktop/Card/Card';
@@ -12,18 +13,22 @@ import { useForm } from '../../../hooks/useForm';
 
 function AuthPage() {
 
+    const navigate = useNavigate()
+
     const {formData, handleChange } = useForm<WorkerLoginProps>({
         password:'',
         login:'' 
     })
 
     function handleSubmit(){
-        // alert(JSON.stringify(formData))
-        login(formData)
+        // console.log(
+        //     login(formData).then( t => t)
+        //     );
+        getWorkerInfoByToken()
+        // navigate('/main')
+        // alert("fail with login")
+        
     }
-
-
-
 
     return (
         <div className='page'>
