@@ -15,6 +15,11 @@ export type WorkerLoginProps = {
     password:string,
     login:string
 }
+export type WorkerRegisterProps = {
+    password:string,
+    login:string,
+    worker_FIO:string
+}
 
 
 export type WorkerInfoProps = {
@@ -32,6 +37,27 @@ export function postRequest(requestData:RequestData){
         requestData)
             .then(response => console.log(response.data)) 
             .catch(error => console.log(error));
+}
+
+
+export async function register(
+    registerData:WorkerRegisterProps,
+    setErrorMessage:React.Dispatch<React.SetStateAction<string>>,
+    setSuccsessMessage:React.Dispatch<React.SetStateAction<string>>
+    ){
+    
+    await axios.post(routes.registration, registerData)
+        .then( response => {
+            console.log('register resp->', response)
+            setSuccsessMessage(
+                `Пользователь ${response.data.login} зрегистрирован.`
+            )
+
+        }).catch( erorr =>{
+            console.log(erorr.response.data.message);
+            setErrorMessage(erorr.response.data.message)
+        })
+    
 }
 
 export async function login(

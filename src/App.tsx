@@ -17,6 +17,7 @@ function App() {
 
   const [isLoading, setIsLoading] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
+  const [succsessMessage, setSuccsessMessage] = useState('')
   const navigate = useNavigate()
   const [user,setUser] = useState<WorkerInfoProps>({
     id:0,
@@ -37,6 +38,12 @@ function App() {
         title='Ошибка' 
         type='error'
         />
+      <Notification 
+        text={succsessMessage} 
+        setErrorMessage={setSuccsessMessage}
+        title='Успешно' 
+        type='ok'
+        />
 
       <Header 
         login={user.login} 
@@ -47,7 +54,7 @@ function App() {
         <Route path="/" element={<StartPage/>}/>
         <Route path="/request" element={<CreateRequestPage/>}/>
         <Route path="/auth" element={<AuthPage setErrorMessage={setErrorMessage} setUser={setUser}/>}/>
-        <Route path="/register" element={<RegisterPage/>}/>
+        <Route path="/register" element={<RegisterPage setErrorMessage={setErrorMessage} setSuccsessMessage={setSuccsessMessage}/>}/>
         <Route path="/main" element={<MainPage worker={user}/>}/>
       </Routes>
       

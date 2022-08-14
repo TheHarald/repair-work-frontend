@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { register } from '../../../apiFunctions/requestFuntcions';
 import Button from '../../../components/desktop/Button/Button';
 import Card from '../../../components/desktop/Card/Card';
 import Header from '../../../components/desktop/Header/Header';
@@ -13,7 +14,12 @@ type WorkerRegisterProps = {
     worker_FIO:string
 }
 
-function RegisterPage() {
+type RegisterPageProps = {
+    setErrorMessage:React.Dispatch<React.SetStateAction<string>>,
+    setSuccsessMessage:React.Dispatch<React.SetStateAction<string>>
+}
+
+function RegisterPage(props:RegisterPageProps) {
 
     const navigate = useNavigate()
 
@@ -25,8 +31,9 @@ function RegisterPage() {
 
 
     function handleSubmit(){
-        alert(JSON.stringify(formData))
-        navigate('/auth')
+        register(formData, props.setErrorMessage , props.setSuccsessMessage)
+        // alert(JSON.stringify(formData))
+        // navigate('/auth')
         
     }
 
