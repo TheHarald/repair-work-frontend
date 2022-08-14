@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { Route, Routes, useNavigate } from "react-router-dom";
 import { getWorkerInfoByToken, WorkerInfoProps } from './apiFunctions/requestFuntcions';
 import Header from './components/desktop/Header/Header';
+import Notification from './components/desktop/Notification/Notification';
 import Spinner from './components/desktop/Spinner/Spinner';
 import AuthPage from './pages/desktop/AuthPage/AuthPage';
 import CreateRequestPage from './pages/desktop/CreteRequestPage/CreateRequestPage';
@@ -15,17 +16,8 @@ function App() {
   let width = window.screen.width
 
   const [isLoading, setIsLoading] = useState(false)
+  const [errorMessage, setErrorMessage] = useState('')
   const navigate = useNavigate()
-
-  useEffect( ()=>{
-    getWorkerInfoByToken().then( (data)=>{
-      console.log('token get ->', data);
-      if(data){
-          setUser(data)
-          setIsLoading(false)
-        }})
-  },[])
-
   const [user,setUser] = useState<WorkerInfoProps>({
     id:0,
     worker_FIO:'',
@@ -38,11 +30,23 @@ function App() {
   return (
     <div>
       <Spinner isVisible={isLoading}/>
-      <Header login={user.login}/>
+
+      <Notification 
+        text={errorMessage} 
+        setErrorMessage={setErrorMessage}
+        title='Ошибка' 
+        type='error'
+        />
+
+      <Header 
+        login={user.login} 
+        setIsLoading={setIsLoading} 
+        setUser={setUser}/>
+
       <Routes>
         <Route path="/" element={<StartPage/>}/>
         <Route path="/request" element={<CreateRequestPage/>}/>
-        <Route path="/auth" element={<AuthPage setUser={setUser}/>}/>
+        <Route path="/auth" element={<AuthPage setErrorMessage={setErrorMessage} setUser={setUser}/>}/>
         <Route path="/register" element={<RegisterPage/>}/>
         <Route path="/main" element={<MainPage worker={user}/>}/>
       </Routes>

@@ -6,10 +6,19 @@ import './notification.css'
 type NotificationProps = {
     type: 'error' | 'ok',
     title:string,
-    text:string
+    text:string,
+    setErrorMessage: React.Dispatch<React.SetStateAction<string>>
 }
 
 function Notification(props:NotificationProps) {
+
+
+
+    let notificationClassName = `notification`
+
+    function handleClose(){
+        props.setErrorMessage('')
+    }
 
     const error = <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <circle opacity="0.7" cx="12" cy="12" r="10" fill="#F12B43"/>
@@ -23,16 +32,14 @@ function Notification(props:NotificationProps) {
 
     const icon = props.type==='error'?error:ok
 
-
-
     return (
-        <div className='notification'>
+        <div className={props.text.length > 0?'notification':'notification hide' }>
             {icon}
             <div className='notification__text-container'>
                 <Title3 text={props.title}/>
                 <p className='notification__text'>{props.text}</p>
             </div>
-            <CloseButton onclick={()=>console.log('test')}/>  
+            <CloseButton onclick={handleClose}/>  
         </div>
     );
 }
