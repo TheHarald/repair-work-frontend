@@ -11,8 +11,13 @@ import Title2 from '../../../components/desktop/Title/Title2';
 import { useForm } from '../../../hooks/useForm';
 import "./createrequestpage.css"
 
+type CreateRequestPageProps = {
+    setErrorMessage:React.Dispatch<React.SetStateAction<string>>,
+    setSuccsessMessage:React.Dispatch<React.SetStateAction<string>>
+}
 
-function CreateRequestPage() {
+
+function CreateRequestPage(props:CreateRequestPageProps) {
 
     const {formData, handleChange} = useForm<RequestData>({
         room:'',
@@ -27,7 +32,7 @@ function CreateRequestPage() {
     const navigate = useNavigate()
 
     function handleSubmit(){
-        postRequest(formData)
+        postRequest(formData, props.setErrorMessage, props.setSuccsessMessage)
         navigate('/')
 
     }

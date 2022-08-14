@@ -52,7 +52,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<StartPage/>}/>
-        <Route path="/request" element={<CreateRequestPage/>}/>
+        <Route path="/request" element={<CreateRequestPage setErrorMessage={setErrorMessage} setSuccsessMessage={setSuccsessMessage} />}/>
         <Route path="/auth" element={<AuthPage setErrorMessage={setErrorMessage} setUser={setUser}/>}/>
         <Route path="/register" element={<RegisterPage setErrorMessage={setErrorMessage} setSuccsessMessage={setSuccsessMessage}/>}/>
         <Route path="/main" element={<MainPage worker={user}/>}/>

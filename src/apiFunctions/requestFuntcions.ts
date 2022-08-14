@@ -31,12 +31,32 @@ export type WorkerInfoProps = {
     updatedAt:string
 }
 
-export function postRequest(requestData:RequestData){
+export function getRequests(){
+    const token =  localStorage.getItem('token')
+    axios.get(routes.requests,{
+        headers: {
+            'Authorization': `Bearier ${token}`
+        }})
+        .then(response => console.log(response))
+        .catch(error => console.log(error))
+}
+
+export function postRequest(
+    requestData:RequestData,
+    setErrorMessage:React.Dispatch<React.SetStateAction<string>>,
+    setSuccsessMessage:React.Dispatch<React.SetStateAction<string>>
+    ){
     axios.post(
         routes.requests,
         requestData)
-            .then(response => console.log(response.data)) 
-            .catch(error => console.log(error));
+            .then(response => {
+                console.log(response.data)
+                setSuccsessMessage('Заявка создана')
+            }) 
+            .catch(error => {
+                console.log(error)
+                setErrorMessage(error.response.data.message)
+            });
 }
 
 
@@ -53,9 +73,9 @@ export async function register(
                 `Пользователь ${response.data.login} зрегистрирован.`
             )
 
-        }).catch( erorr =>{
-            console.log(erorr.response.data.message);
-            setErrorMessage(erorr.response.data.message)
+        }).catch( error =>{
+            console.log(error.response.data.message);
+            setErrorMessage(error.response.data.message)
         })
     
 }
