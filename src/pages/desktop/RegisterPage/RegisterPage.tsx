@@ -32,7 +32,7 @@ function RegisterPage() {
 
     return (
         <div className='page'>
-            <Header/>
+            {/* <Header/> */}
             <div className='page__container'>
                 <Card>
                     <Title2 text='Зарегистрируйтесь, чтобы войти.'/>

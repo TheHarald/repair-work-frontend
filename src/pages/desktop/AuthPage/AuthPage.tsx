@@ -1,38 +1,53 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getWorkerInfoByToken, login, WorkerLoginProps } from '../../../apiFunctions/requestFuntcions';
+import { getWorkerInfoByToken, login, WorkerInfoProps, WorkerLoginProps } from '../../../apiFunctions/requestFuntcions';
 import Button from '../../../components/desktop/Button/Button';
 import LinkButton from '../../../components/desktop/Button/LinkButton';
 import Card from '../../../components/desktop/Card/Card';
 import Header from '../../../components/desktop/Header/Header';
 import Input from '../../../components/desktop/Input/Input';
+import Spinner from '../../../components/desktop/Spinner/Spinner';
 import Title2 from '../../../components/desktop/Title/Title2';
 import { useForm } from '../../../hooks/useForm';
 
 
+type AuthPageProps = {
+    setUser: React.Dispatch<React.SetStateAction<WorkerInfoProps>>
+}
 
-function AuthPage() {
+function AuthPage(props:AuthPageProps) {
 
     const navigate = useNavigate()
+    const [isLoading, setIsLoading] = useState(false)
 
     const {formData, handleChange } = useForm<WorkerLoginProps>({
         password:'',
         login:'' 
     })
 
-    function handleSubmit(){
-        // console.log(
-        //     login(formData).then( t => t)
-        //     );
-        getWorkerInfoByToken()
-        // navigate('/main')
-        // alert("fail with login")
+    function  handleSubmit(){
+        setIsLoading(true)
+        login(formData).then( ()=>{
+                getWorkerInfoByToken().then( (data)=>{
+                console.log('token get ->', data);
+                if(data){
+                    props.setUser(data)
+                    setIsLoading(false)
+                    navigate('/main')
+                }
+
+            })
+            
+        }).catch( ()=>{
+            console.log('not auth');
+        })
+        
         
     }
 
     return (
         <div className='page'>
-            <Header/>
+            <Spinner isVisible={isLoading}/>
             <div className='page__container'>
                 <Card>
                     <Title2 text='Введите логин и пароль, чтобы авторизоваться в системе.'/>

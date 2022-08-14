@@ -36,7 +36,6 @@ function CreateRequestPage() {
 
     return (
         <div className='page'>
-            <Header/>
             <div className='page__container'>
                 <Card>
                     <Title2 text='Заполните поля и отправьте заявку на ремонт.'/>

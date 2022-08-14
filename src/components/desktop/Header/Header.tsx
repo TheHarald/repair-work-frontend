@@ -1,17 +1,53 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import LoginBoxLineIcon from 'remixicon-react/LoginBoxLineIcon'
+import LogoutBoxLineIcon from 'remixicon-react/LogoutBoxLineIcon'
+import User3LineIcon from 'remixicon-react/User3LineIcon'
 import "./header.css"
 
-function Header() {
+type HeaderProps = {
+    login:string
+}
+
+
+
+function Header(props:HeaderProps) {
+
+    const navigate = useNavigate()
+
+    function handleLogOut(){
+        localStorage.removeItem('token')
+        navigate('/')
+        location.reload();
+    }
+
     return (
         <header className='header' >
             <section className='header-container'>
                 <h2 className='header__title'>Ремонтные заявки</h2>
-                <Link to={'/auth'} className='login_link'>
-                    <p className='login-link__text' >Войти</p>
-                    <LoginBoxLineIcon size={24}  className='login-link__icon'/>
-                </Link>
+
+                {
+                    props.login.length > 0
+                    ?
+                    <div className='worker-actions'>
+                        <button onClick={handleLogOut}  className='login_link'>
+                            <p className='login-link__text' >{props.login}</p>
+                            <LogoutBoxLineIcon size={24}  className='login-link__icon'/>
+                        </button >
+                        <Link to={'/main'} className='login_link' >
+                            <User3LineIcon size={24}  className='login-link__icon'/>
+                        </Link>
+                    </div>
+                    :
+                    <Link to={'/auth'} className='login_link'>
+                        <p className='login-link__text' >Войти</p>
+                        <LoginBoxLineIcon size={24}  className='login-link__icon'/>
+                    </Link>
+                }
+
+                
+
+                
             </section>
         </header>
     );

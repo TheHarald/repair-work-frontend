@@ -16,6 +16,15 @@ export type WorkerLoginProps = {
     login:string
 }
 
+export type WorkerInfoProps = {
+    id:number,
+    worker_FIO:string,
+    login:string,
+    createdAt:string,
+    requestId:string,
+    updatedAt:string
+}
+
 export function postRequest(requestData:RequestData){
     axios.post(
         routes.requests,
@@ -24,8 +33,8 @@ export function postRequest(requestData:RequestData){
             .catch(error => console.log(error));
 }
 
-export function login(loginData:WorkerLoginProps){
-    axios.post(routes.login,loginData)
+export async function login(loginData:WorkerLoginProps){
+    await axios.post(routes.login,loginData)
         .then(response => {
             console.log(response.data)
             localStorage.setItem('token',response.data)
@@ -33,16 +42,21 @@ export function login(loginData:WorkerLoginProps){
         .catch(error => {
             console.log(error)
         })
+
+    console.log('end');
     
 
 }
 
-export function getWorkerInfoByToken(){
+export async function getWorkerInfoByToken(){
     const token =  localStorage.getItem('token')
-    axios.get(routes.workerInfo, {
+    return await axios.get(routes.workerInfo, {
         headers: {
             'Authorization': `Bearier ${token}`
         }
-    }).then( response => console.log(response))
+    }).then( response => {
+        // console.log('cl response in f ->',response)
+        return response.data
+    })
         .catch( error => console.log(error))
 }

@@ -7,6 +7,12 @@
 
 }
 
+.worker-actions{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
 .header-container{
     padding: 10px 50px;
     min-width: 760px;
@@ -29,6 +35,10 @@
     gap: 10px;
     align-items: center;
     text-decoration: none;
+    appearance: none;
+    border: none;
+    background: none;
+    cursor: pointer;
 }
 
 .login-link__text{
@@ -36,6 +46,10 @@
     font-size: 16px;
     text-align: start;
     color: #F5F6FA;
+}
+
+.logout-link__icon{
+    fill: #F0142F;
 }
 
 .login-link__icon{
