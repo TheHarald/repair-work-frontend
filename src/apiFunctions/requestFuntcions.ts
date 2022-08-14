@@ -16,6 +16,7 @@ export type WorkerLoginProps = {
     login:string
 }
 
+
 export type WorkerInfoProps = {
     id:number,
     worker_FIO:string,
@@ -33,14 +34,18 @@ export function postRequest(requestData:RequestData){
             .catch(error => console.log(error));
 }
 
-export async function login(loginData:WorkerLoginProps){
+export async function login(
+    loginData:WorkerLoginProps, 
+    setErrorMessage:React.Dispatch<React.SetStateAction<string>>){
+
     await axios.post(routes.login,loginData)
         .then(response => {
-            console.log(response.data)
+            console.log('login then->',response.data)
             localStorage.setItem('token',response.data)
         })
         .catch(error => {
-            console.log(error)
+            console.log('login catch->',error)
+            setErrorMessage(error.response.data.message)
         })
 
     console.log('end');
@@ -58,5 +63,5 @@ export async function getWorkerInfoByToken(){
         // console.log('cl response in f ->',response)
         return response.data
     })
-        .catch( error => console.log(error))
+        .catch( error => console.log('getWorkerInfoByToken-> ',error))
 }
