@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 function StartPage() {
     return (
         <div className='page'>
-            <Header/>
+            {/* <Header/> */}
             <div className='page__container'>
                 <RepairMan size={400}/>
                 <p className='start-page__text'>
