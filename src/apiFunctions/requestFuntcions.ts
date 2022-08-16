@@ -1,5 +1,6 @@
 import { routes } from './api.conf';
 import axios from "axios";
+import { RequestProps } from '../service/types';
 
 export type RequestData = {
     room:string,
@@ -31,26 +32,34 @@ export type WorkerInfoProps = {
     updatedAt:string
 }
 
-export function getRequests(){
+export async function getRequests(){
     const token =  localStorage.getItem('token')
-    axios.get(routes.requests,{
-        headers: {
-            'Authorization': `Bearier ${token}`
-        }})
-        .then(response => console.log(response))
-        .catch(error => console.log(error))
+    try{
+        const result = await axios.get<RequestProps>(routes.requests,{
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }})
+        
+        return result
+    }catch(e){
+        console.log( getRequests.name ,e);
+        return e
+    }
+
+    
 }
 
-export function postRequest(
+export async function postRequest(
     requestData:RequestData,
     setErrorMessage:React.Dispatch<React.SetStateAction<string>>,
     setSuccsessMessage:React.Dispatch<React.SetStateAction<string>>
     ){
-    axios.post(
+     axios.post(
         routes.requests,
         requestData)
             .then(response => {
                 console.log(response.data)
+
                 setSuccsessMessage('Заявка создана')
             }) 
             .catch(error => {
@@ -103,11 +112,23 @@ export async function getWorkerInfoByToken(){
     const token =  localStorage.getItem('token')
     return await axios.get(routes.workerInfo, {
         headers: {
-            'Authorization': `Bearier ${token}`
+            'Authorization': `Bearer ${token}`
         }
     }).then( response => {
         // console.log('cl response in f ->',response)
         return response.data
     })
         .catch( error => console.log('getWorkerInfoByToken-> ',error))
+}
+
+
+export async function takeRequest(workerId:number, requestId:number){
+    try {
+        const result = await axios.patch(`${routes.workers}/${workerId}`,{
+            requestId: requestId
+        })
+        return result
+    } catch (error) {
+        return error
+    }
 }

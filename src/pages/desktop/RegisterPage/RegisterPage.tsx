@@ -14,6 +14,7 @@ type WorkerRegisterProps = {
     worker_FIO:string
 }
 
+
 type RegisterPageProps = {
     setErrorMessage:React.Dispatch<React.SetStateAction<string>>,
     setSuccsessMessage:React.Dispatch<React.SetStateAction<string>>
@@ -39,7 +40,6 @@ function RegisterPage(props:RegisterPageProps) {
 
     return (
         <div className='page'>
-            {/* <Header/> */}
             <div className='page__container'>
                 <Card>
                     <Title2 text='Зарегистрируйтесь, чтобы войти.'/>

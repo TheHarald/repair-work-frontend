@@ -33,7 +33,7 @@ function AuthPage(props:AuthPageProps) {
                 console.log('token get ->', data);
                 if(data){
                     props.setUser(data)
-                    navigate('/main')
+                    navigate('/main/requests')
                 }
                 setIsLoading(false)
             })

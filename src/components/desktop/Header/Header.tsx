@@ -24,7 +24,7 @@ function Header(props:HeaderProps) {
                 console.log('token get ->', data);
                 if(data){
                     props.setUser(data)
-                    navigate('/main')
+                    navigate('/main/requests')
         }}).catch( e => console.log('failed->',e))
         props.setIsLoading(false)
     }
@@ -49,7 +49,7 @@ function Header(props:HeaderProps) {
                             <LogoutBoxLineIcon size={24}  className='login-link__icon'/>
                         </button >
                         <Divider color='#fff'/>
-                        <Link to={'/main'} className='login_link' >
+                        <Link to={'/main/profile'} className='login_link' >
                             <User3LineIcon size={24}  className='login-link__icon'/>
                         </Link>
                     </div>

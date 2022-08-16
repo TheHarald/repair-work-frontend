@@ -1,0 +1,46 @@
+.navigation-button__link{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+   
+}
+
+.navigation-bar{
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    width: 200px;
+    background: #fff;
+    height: 100vh;
+}
+
+.selected{
+    color: #336DFF;
+}
+
+.non-selected{
+    color: #5A607F;
+}
+
+
+.navigation-button__text{
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.navigation-button{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 8px 12px 8px 16px;
+    text-decoration: none;
+
+}
+
+.navigation-button:hover{
+    background: #ECF2FF;
+}
+

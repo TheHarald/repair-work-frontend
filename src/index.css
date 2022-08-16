@@ -19,7 +19,7 @@ code {
 }
 
 .page__container{
-  min-width: 760px;
+  min-width: 956px;
   display: flex;
   flex-direction: column;
   align-items: center ;
