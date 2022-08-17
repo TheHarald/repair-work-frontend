@@ -73,6 +73,7 @@ function AuthPage(props:AuthPageProps) {
                          text='Войти'
                          type='submit'
                          onClick={handleSubmit} 
+                         color="primary"
                     />
                     <LinkButton
                         to='/register'

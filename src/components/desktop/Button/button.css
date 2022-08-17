@@ -5,10 +5,26 @@
     align-items: center;
     padding: 10px 16px;
     gap: 10px;
-    background: #1E5EFF;
     border-radius: 6px;
+}
+
+.primary{
+    color: #fff;
+    background: #1E5EFF;
     border: none;
-    color: #FFFFFF;
+}
+
+.green{
+    color: #05874F;
+    border: 2px solid #05874F;
+    background: none;
+    font-weight: 600;
+}
+.red{
+    color: #F0142F;
+    border: 2px solid #F0142F;
+    background: none;
+    font-weight: 600;
 }
 
 .link-button{
@@ -28,6 +44,22 @@
     width: 24px;
     background: #F5F6FA;
     border-radius: 8px;
+}
+
+.card-button{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 6px;
+    border: 2px solid #F0142F;
+    border-radius: 6px;
+    color: #F0142F;
+    background: none;
+}
+
+.icon-button:hover{
+    background-color: #F5F6FA;
 }
 
 

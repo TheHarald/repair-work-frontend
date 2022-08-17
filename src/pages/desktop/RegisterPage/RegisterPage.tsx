@@ -74,6 +74,7 @@ function RegisterPage(props:RegisterPageProps) {
                          text='Зарегистрироваться'
                          type='submit'
                          onClick={handleSubmit} 
+                         color="primary"
                     />
                     
                 </Card>

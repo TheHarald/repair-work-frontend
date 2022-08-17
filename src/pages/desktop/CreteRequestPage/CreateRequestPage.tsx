@@ -87,7 +87,8 @@ function CreateRequestPage(props:CreateRequestPageProps) {
                     <Button
                         text='Отправить заявку'
                         type='submit'
-                        onClick={handleSubmit}  
+                        onClick={handleSubmit} 
+                        color="primary" 
                     />
                     
                 </Card>
