@@ -6,7 +6,7 @@ import './mainpage.css'
 
 
 type MainPageProps = {
-    worker:WorkerInfoProps
+    
 }
 
 function MainPage(props:MainPageProps) {

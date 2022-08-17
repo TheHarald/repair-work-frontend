@@ -8,8 +8,7 @@ import Divider from '../Divider/Divider';
 import "./header.css"
 
 type HeaderProps = {
-    login:string
-    setUser: React.Dispatch<React.SetStateAction<WorkerInfoProps>>
+    // setUser: React.Dispatch<React.SetStateAction<WorkerInfoProps>>
     setIsLoading:React.Dispatch<React.SetStateAction<boolean>>
 
 }
@@ -17,20 +16,22 @@ type HeaderProps = {
 function Header(props:HeaderProps) {
 
     const navigate = useNavigate()
+    const user = JSON.parse(localStorage.getItem('user') || '{}')
 
     function handleLogIn(){
         props.setIsLoading(true)
         getWorkerInfoByToken().then( (data)=>{
                 console.log('token get ->', data);
                 if(data){
-                    props.setUser(data)
+                    localStorage.setItem('user', JSON.stringify(data))
                     navigate('/main/requests')
         }}).catch( e => console.log('failed->',e))
-        props.setIsLoading(false)
+        props.setIsLoading(false)   
     }
 
     function handleLogOut(){
         localStorage.removeItem('token')
+        localStorage.removeItem('user')
         navigate('/')
         location.reload();
     }
@@ -41,11 +42,11 @@ function Header(props:HeaderProps) {
                 <Link to={'/'} className='header__title'>Ремонтные заявки</Link>
 
                 {
-                    props.login.length > 0
+                    user.login
                     ?
                     <div className='worker-actions'>
                         <button onClick={handleLogOut}  className='login_link'>
-                            <p className='login-link__text' >{props.login}</p>
+                            <p className='login-link__text' >{user.login}</p>
                             <LogoutBoxLineIcon size={24}  className='login-link__icon'/>
                         </button >
                         <Divider color='#fff'/>

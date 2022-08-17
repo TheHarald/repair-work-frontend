@@ -9,19 +9,19 @@ import './mainpage.css'
 type RequestPageProps = {
     setErrorMessage:React.Dispatch<React.SetStateAction<string>>,
     setSuccsessMessage:React.Dispatch<React.SetStateAction<string>>
-    user:WorkerInfoProps
 }
 
 function RequestsPage(props:RequestPageProps) {
 
     const [requests,setRequests] = useState<RequestProps[] | []>([])
     const [isLoading, setIsLoading] = useState(false)
+    const user = JSON.parse(localStorage.getItem('user') || '{}')
 
     useEffect(()=>{
         setIsLoading(true)
         getRequests().then( 
             (response:any) => {
-                setRequests(response.data)
+                setRequests(response.data.filter( (item:any) => item.workerId === null))
                 setIsLoading(false)
                 console.log(response.data);
             });
@@ -29,10 +29,10 @@ function RequestsPage(props:RequestPageProps) {
 
 
     function handleClick(id:number){
-        console.log("click", id, props.user.id);
-        takeRequest(props.user.id, id).then( (response:any) =>{
+        console.log("click", id, user.id);
+        takeRequest(user.id, id).then( (response:any) =>{
            props.setSuccsessMessage("Заявка принята")
-        })
+        }).catch( error => console.log(error))
     }
     
     return (

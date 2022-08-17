@@ -77,7 +77,7 @@ export async function register(
     
     await axios.post(routes.registration, registerData)
         .then( response => {
-            console.log('register resp->', response)
+            // console.log('register resp->', response)
             setSuccsessMessage(
                 `Пользователь ${response.data.login} зрегистрирован.`
             )
@@ -115,7 +115,6 @@ export async function getWorkerInfoByToken(){
             'Authorization': `Bearer ${token}`
         }
     }).then( response => {
-        // console.log('cl response in f ->',response)
         return response.data
     })
         .catch( error => console.log('getWorkerInfoByToken-> ',error))
@@ -123,9 +122,16 @@ export async function getWorkerInfoByToken(){
 
 
 export async function takeRequest(workerId:number, requestId:number){
+    const token =  localStorage.getItem('token')
+    console.log('token -> ',token);
     try {
-        const result = await axios.patch(`${routes.workers}/${workerId}`,{
-            requestId: requestId
+        const result = await axios.patch(`${routes.requests}/${requestId}`,{
+            workerId: workerId
+        },
+        {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
         })
         return result
     } catch (error) {

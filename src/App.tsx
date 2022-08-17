@@ -53,17 +53,16 @@ function App() {
         />
 
       <Header 
-        login={user.login} 
         setIsLoading={setIsLoading} 
-        setUser={setUser}/>
+        />
 
       <Routes>
         <Route path="" element={<StartPage/>}/>
         <Route path="request" element={<CreateRequestPage setErrorMessage={setErrorMessage} setSuccsessMessage={setSuccsessMessage} />}/>
-        <Route path="auth" element={<AuthPage setErrorMessage={setErrorMessage} setUser={setUser}/>}/>
+        <Route path="auth" element={<AuthPage setErrorMessage={setErrorMessage} />}/>
         <Route path="register" element={<RegisterPage setErrorMessage={setErrorMessage} setSuccsessMessage={setSuccsessMessage}/>}/>
-        <Route  path="main" element={<MainPage worker={user}/>}>
-          <Route path='requests' element={<RequestsPage setErrorMessage={setErrorMessage} setSuccsessMessage={setSuccsessMessage} user={user}  />} />
+        <Route  path="main" element={<MainPage />}>
+          <Route path='requests' element={<RequestsPage setErrorMessage={setErrorMessage} setSuccsessMessage={setSuccsessMessage} />} />
           <Route path='myrequests' element={<MyRequestsPage/>} />
           <Route path='profile' element={<ProfilePage/>} />
         </Route>

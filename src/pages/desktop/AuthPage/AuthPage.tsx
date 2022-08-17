@@ -12,7 +12,7 @@ import { useForm } from '../../../hooks/useForm';
 
 
 type AuthPageProps = {
-    setUser: React.Dispatch<React.SetStateAction<WorkerInfoProps>>
+    // setUser: React.Dispatch<React.SetStateAction<WorkerInfoProps>>
     setErrorMessage: React.Dispatch<React.SetStateAction<string>>
 }
 
@@ -30,9 +30,10 @@ function AuthPage(props:AuthPageProps) {
         setIsLoading(true)
         login(formData, props.setErrorMessage).then( ()=>{
                 getWorkerInfoByToken().then( (data)=>{
-                console.log('token get ->', data);
+                // console.log('token get ->', data);
                 if(data){
-                    props.setUser(data)
+                    localStorage.setItem('user', JSON.stringify(data))
+                    // props.setUser(data)
                     navigate('/main/requests')
                 }
                 setIsLoading(false)
