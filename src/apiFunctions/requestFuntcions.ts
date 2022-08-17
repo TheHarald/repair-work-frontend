@@ -123,10 +123,25 @@ export async function getWorkerInfoByToken(){
 
 export async function takeRequest(workerId:number, requestId:number){
     const token =  localStorage.getItem('token')
-    console.log('token -> ',token);
     try {
         const result = await axios.patch(`${routes.requests}/${requestId}`,{
             workerId: workerId
+        },
+        {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        })
+        return result
+    } catch (error) {
+        return error
+    }
+}
+export async function removeRequest(workerId:number, requestId:number){
+    const token =  localStorage.getItem('token')
+    try {
+        const result = await axios.patch(`${routes.requests}/${requestId}`,{
+            workerId: null
         },
         {
             headers: {

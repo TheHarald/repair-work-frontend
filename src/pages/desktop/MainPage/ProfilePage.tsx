@@ -11,13 +11,6 @@ function ProfilePage() {
             <h1>{user.worker_FIO}</h1>            
             <h1>{user.login}</h1>            
             <h1>{user.id}</h1>      
-            <IconButton onClick={()=>console.log("eee")}/>   
-            <Button
-                type='button'
-                text='Принять'
-                color='green'
-                onClick={()=>console.log("e")}            
-            />  
         </div>
     );
 }

@@ -58,8 +58,12 @@
     background: none;
 }
 
+.card-button:hover{
+    background: #ECF2FF;
+}
+
 .icon-button:hover{
-    background-color: #F5F6FA;
+    background: #F5F6FA;
 }
 
 

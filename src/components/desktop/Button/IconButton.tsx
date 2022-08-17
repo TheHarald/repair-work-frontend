@@ -1,15 +1,16 @@
 import React from 'react';
-import CloseCircleLineIcon from 'remixicon-react/CloseLineIcon'
+import CloseLineIcon from 'remixicon-react/CloseLineIcon'
 import './button.css'
 type IconButtonProps = {
-    onClick: ()=>void
+    onClick: any
+    id: number
 
 }
 
 function IconButton(props:IconButtonProps) {
     return (
-        <button className='card-button'>
-            <CloseCircleLineIcon/>
+        <button onClick={()=>props.onClick(props.id)} className='card-button'>
+            <CloseLineIcon size={24}/>
         </button>
     );
 }

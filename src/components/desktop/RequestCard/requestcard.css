@@ -93,6 +93,17 @@ d
     border-radius: 6px;
 }
 
+.accept {
+    color: #05874F;
+    border: 2px solid #05874F;
+}
+
 .primary-button:hover{
     background: #ECF2FF;
+}
+
+.request-card__actions{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
 }

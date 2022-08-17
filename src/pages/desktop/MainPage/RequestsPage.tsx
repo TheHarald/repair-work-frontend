@@ -29,9 +29,9 @@ function RequestsPage(props:RequestPageProps) {
 
 
     function handleClick(id:number){
-        console.log("click", id, user.id);
         takeRequest(user.id, id).then( (response:any) =>{
            props.setSuccsessMessage("Заявка принята")
+           setRequests( requests.filter( request => request.id !== id))
         }).catch( error => console.log(error))
     }
     
@@ -48,8 +48,9 @@ function RequestsPage(props:RequestPageProps) {
                         room={request.room}
                         inerval={`${request.start_time_to_arrive} - ${request.end_time_to_arrive}`}
                         sender_FIO={request.sender_FIO}
-                        onClick={handleClick}   
+                        onClickButton={handleClick}
                         id={request.id}   
+                        type="default"
                     />
                 })
 

@@ -2,15 +2,29 @@ import React from 'react';
 import Title3 from '../Title/Title3';
 import Home2LineIcon from 'remixicon-react/Home2LineIcon'
 import './requestcard.css'
+import Button from '../Button/Button';
+import IconButton from '../Button/IconButton';
+
+type defaultOptions = {
+    onClickButton: ((id:number)=>void) | (()=>void)
+}
+
+type personalOptions = {
+    onClickButton: ((id:number)=>void) | (()=>void),
+    onClickIconButton: ((id:number)=>void)
+}
+
 
 type RequestCardProps = {
     room:string,
     email:string,
     task:string,
     inerval:string,
-    sender_FIO:string
-    onClick:(id:number)=>void
-    id:number
+    sender_FIO:string,
+    onClickButton: ((id:number)=>void) | (()=>void),
+    onClickIconButton?: (id:number)=>void,
+    id:number,
+    type: 'default' | 'personal'
 }
 
 function RequestCard(props:RequestCardProps) {
@@ -31,7 +45,16 @@ function RequestCard(props:RequestCardProps) {
                     <h3 className='prop-title'>интервал</h3>
                     <p className='request-card__text'>{props.inerval}</p>
                 </div>
-                <button onClick={()=> props.onClick(props.id)} className='primary-button'>Принять</button>
+                    {
+                        props.type === 'default'
+                        ?
+                        <button onClick={()=> props.onClickButton(props.id)} className='primary-button'>Принять</button>
+                        :
+                        <div className='request-card__actions'>
+                            <IconButton onClick={props.onClickIconButton} id={props.id}/>
+                            <button onClick={()=> props.onClickButton(props.id)} className='primary-button accept'>Принять</button>
+                        </div>
+                    }
             </div>
             
         </article>

@@ -1,20 +1,32 @@
 import React, { useEffect, useState } from 'react';
-import { getRequests } from '../../../apiFunctions/requestFuntcions';
+import { getRequests, removeRequest } from '../../../apiFunctions/requestFuntcions';
 import RequestCard from '../../../components/desktop/RequestCard/RequestCard';
 import Spinner from '../../../components/desktop/Spinner/Spinner';
 import Title2 from '../../../components/desktop/Title/Title2';
 import { RequestProps } from '../../../service/types';
 import './mainpage.css'
 
-function MyRequestsPage() {
+type MyRequestPageProps = {
+    setErrorMessage:React.Dispatch<React.SetStateAction<string>>,
+    setSuccsessMessage:React.Dispatch<React.SetStateAction<string>>
+}
+
+function MyRequestsPage(props:MyRequestPageProps) {
 
     const [myRequests, setMyrequests] = useState<RequestProps[] | []>([])
     const [isLoading, setIsLoading] = useState(false)
     const user = JSON.parse(localStorage.getItem('user') || '{}')
 
 
-    function handleClick(id:number){
-        console.log("click");
+    function handleDelete(id:number){
+        removeRequest(user.id, id).then( (response:any) =>{
+            props.setSuccsessMessage("Заявка удалена")
+            setMyrequests( myRequests.filter( myRequest => myRequest.id !== id))
+         }).catch( error => console.log(error))
+        
+    }
+    function handleAccept(id:number){
+        console.log("accept", id);
         
     }
     
@@ -46,8 +58,10 @@ function MyRequestsPage() {
                         room={myRequest.room}
                         inerval={`${myRequest.start_time_to_arrive} - ${myRequest.end_time_to_arrive}`}
                         sender_FIO={myRequest.sender_FIO}
-                        onClick={handleClick}   
+                        onClickButton={handleAccept}
+                        onClickIconButton={handleDelete}   
                         id={myRequest.id}   
+                        type= 'personal'
                     />
                 })
 
