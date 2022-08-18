@@ -125,7 +125,8 @@ export async function takeRequest(workerId:number, requestId:number){
     const token =  localStorage.getItem('token')
     try {
         const result = await axios.patch(`${routes.requests}/${requestId}`,{
-            workerId: workerId
+            workerId: workerId,
+            status: "in_work",
         },
         {
             headers: {
@@ -141,7 +142,24 @@ export async function removeRequest(workerId:number, requestId:number){
     const token =  localStorage.getItem('token')
     try {
         const result = await axios.patch(`${routes.requests}/${requestId}`,{
-            workerId: null
+            workerId: null,
+            status: "to_do",
+        },
+        {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        })
+        return result
+    } catch (error) {
+        return error
+    }
+}
+export async function completeRequest(workerId:number, requestId:number){
+    const token =  localStorage.getItem('token')
+    try {
+        const result = await axios.patch(`${routes.requests}/${requestId}`,{
+            status: "completed",
         },
         {
             headers: {
