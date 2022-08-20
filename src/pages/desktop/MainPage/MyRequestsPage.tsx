@@ -40,7 +40,7 @@ function MyRequestsPage(props:MyRequestPageProps) {
         setIsLoading(true)
         getRequests().then(
             (response:any) => {
-                let requests = response.data.filter( (item:any) => item.workerId === user.id && item.status !== 'completed')
+                let requests = response.data  //.filter( (item:any) => item.workerId === user.id && item.status !== 'completed')
                 setMyrequests(requests)
                 setIsLoading(false)
                 console.log(requests);
@@ -54,6 +54,7 @@ function MyRequestsPage(props:MyRequestPageProps) {
         setIsShow(!isShow)
         if(isShow){
             console.log("show");
+            console.log(myRequests);
         }
 
     }
@@ -80,7 +81,7 @@ function MyRequestsPage(props:MyRequestPageProps) {
                         onClickButton={handleComplete}
                         onClickIconButton={handleDelete}   
                         id={myRequest.id}   
-                        type= 'personal'
+                        status={myRequest.status}
                     />
                 })
 

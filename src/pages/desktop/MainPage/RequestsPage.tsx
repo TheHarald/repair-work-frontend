@@ -50,7 +50,7 @@ function RequestsPage(props:RequestPageProps) {
                         sender_FIO={request.sender_FIO}
                         onClickButton={handleClick}
                         id={request.id}   
-                        type="default"
+                        status={request.status}
                     />
                 })
 

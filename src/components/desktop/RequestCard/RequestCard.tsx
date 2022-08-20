@@ -4,6 +4,7 @@ import Home2LineIcon from 'remixicon-react/Home2LineIcon'
 import './requestcard.css'
 import Button from '../Button/Button';
 import IconButton from '../Button/IconButton';
+import { RequestStatuses } from '../../../service/types';
 
 type defaultOptions = {
     onClickButton: ((id:number)=>void) | (()=>void)
@@ -24,10 +25,33 @@ type RequestCardProps = {
     onClickButton: ((id:number)=>void) | (()=>void),
     onClickIconButton?: (id:number)=>void,
     id:number,
-    type: 'default' | 'personal'
+    // type: 'default' | 'active'| 'completed',
+    status: RequestStatuses
 }
 
 function RequestCard(props:RequestCardProps) {
+
+    let options:JSX.Element;
+
+    switch(props.status){
+        case 'to_do':
+            options = <button onClick={()=> props.onClickButton(props.id)} className='primary-button'>Принять</button>
+            break;
+        case 'in_work':
+            options = <div className='request-card__actions'>
+                            <IconButton onClick={props.onClickIconButton} id={props.id}/>
+                            <button onClick={()=> props.onClickButton(props.id)} className='primary-button accept'>Завершить</button>
+                        </div>
+             break;
+        case 'completed':
+            console.log('com[');
+            options = <div className='request-card__actions'>
+           
+                    </div>
+            break;
+
+    }
+
     return (
         <article className='request-card'>
             <header className='request-card__header'>
@@ -37,7 +61,7 @@ function RequestCard(props:RequestCardProps) {
                     <p className='request-card__number'>{props.room}</p>
                 </div>
             </header>
-            <p className='request-card__email'>{props.email}</p>
+            <p className='request-card__email'>{props.email} | {props.status}</p>
             <h3 className='prop-title yellow'>Проблема</h3>
             <p className='request-card__text upper'>{props.task}</p>
             <div className='request-card__header'>
@@ -45,16 +69,7 @@ function RequestCard(props:RequestCardProps) {
                     <h3 className='prop-title'>интервал</h3>
                     <p className='request-card__text'>{props.inerval}</p>
                 </div>
-                    {
-                        props.type === 'default'
-                        ?
-                        <button onClick={()=> props.onClickButton(props.id)} className='primary-button'>Принять</button>
-                        :
-                        <div className='request-card__actions'>
-                            <IconButton onClick={props.onClickIconButton} id={props.id}/>
-                            <button onClick={()=> props.onClickButton(props.id)} className='primary-button accept'>Принять</button>
-                        </div>
-                    }
+                    { options}
             </div>
             
         </article>
