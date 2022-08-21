@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import './navigationbutton.css'
 
 type NavigationButtonProps = {
@@ -10,13 +10,10 @@ type NavigationButtonProps = {
 
 function NavigationButton(props:NavigationButtonProps) {
 
-    const url = window.location.href
-
-    console.log(url)
-
+    const loaction = useLocation()
     let linkClassName = `navigation-button__link`
 
-    if(url.match(`/${props.to}`)){
+    if(loaction.pathname.match(`/${props.to}`)){
         linkClassName += " selected"
     }else{
         linkClassName += " non-selected"
