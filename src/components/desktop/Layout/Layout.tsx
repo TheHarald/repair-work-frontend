@@ -1,16 +1,16 @@
 import React from 'react';
-import './card.css'
+import './layout.css'
 
 type CardProps = {
     children?: JSX.Element|JSX.Element[]
 }
 
-function Card(props:CardProps) {
+function Layout(props:CardProps) {
     return (
-        <div className='card'>
+        <div className='layout'>
             {props.children}
         </div>
     );
 }
 
-export default Card;
+export default Layout;

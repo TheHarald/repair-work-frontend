@@ -1,8 +1,7 @@
 import React from 'react';
 import Title3 from '../Title/Title3';
 import Home2LineIcon from 'remixicon-react/Home2LineIcon'
-import './requestcard.css'
-import Button from '../Button/Button';
+import './card.css'
 import IconButton from '../Button/IconButton';
 import { RequestStatuses } from '../../../service/types';
 
@@ -25,7 +24,6 @@ type RequestCardProps = {
     onClickButton: ((id:number)=>void) | (()=>void),
     onClickIconButton?: (id:number)=>void,
     id:number,
-    // type: 'default' | 'active'| 'completed',
     status: RequestStatuses
 }
 
@@ -44,7 +42,6 @@ function RequestCard(props:RequestCardProps) {
                         </div>
              break;
         case 'completed':
-            console.log('com[');
             options = <div className='request-card__actions'>
            
                     </div>
@@ -53,7 +50,7 @@ function RequestCard(props:RequestCardProps) {
     }
 
     return (
-        <article className='request-card'>
+        <article className='card'>
             <header className='request-card__header'>
                 <Title3 text={props.sender_FIO}/>
                 <div className='request-card__room'>
@@ -61,7 +58,7 @@ function RequestCard(props:RequestCardProps) {
                     <p className='request-card__number'>{props.room}</p>
                 </div>
             </header>
-            <p className='request-card__email'>{props.email} | {props.status}</p>
+            <p className='card__subtitle upper'>{props.email} | {props.status}</p>
             <h3 className='prop-title yellow'>Проблема</h3>
             <p className='request-card__text upper'>{props.task}</p>
             <div className='request-card__header'>

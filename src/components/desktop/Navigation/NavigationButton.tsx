@@ -10,8 +10,10 @@ type NavigationButtonProps = {
 
 function NavigationButton(props:NavigationButtonProps) {
 
-    // const [style, setStyle] = useState()
     const url = window.location.href
+
+    console.log(url)
+
     let linkClassName = `navigation-button__link`
 
     if(url.match(`/${props.to}`)){

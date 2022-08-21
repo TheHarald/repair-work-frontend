@@ -1,18 +1,17 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getWorkerInfoByToken, login, WorkerInfoProps, WorkerLoginProps } from '../../../apiFunctions/requestFuntcions';
 import Button from '../../../components/desktop/Button/Button';
 import LinkButton from '../../../components/desktop/Button/LinkButton';
-import Card from '../../../components/desktop/Card/Card';
-import Header from '../../../components/desktop/Header/Header';
+import Layout from '../../../components/desktop/Layout/Layout';
 import Input from '../../../components/desktop/Input/Input';
 import Spinner from '../../../components/desktop/Spinner/Spinner';
 import Title2 from '../../../components/desktop/Title/Title2';
 import { useForm } from '../../../hooks/useForm';
+import { WorkerLoginProps } from '../../../service/types';
+import { getWorkerInfoByToken, login } from '../../../service/auth';
 
 
 type AuthPageProps = {
-    // setUser: React.Dispatch<React.SetStateAction<WorkerInfoProps>>
     setErrorMessage: React.Dispatch<React.SetStateAction<string>>
 }
 
@@ -49,7 +48,7 @@ function AuthPage(props:AuthPageProps) {
         <div className='page'>
             <Spinner isVisible={isLoading}/>
             <div className='page__container'>
-                <Card>
+                <Layout>
                     <Title2 text='Введите логин и пароль, чтобы авторизоваться в системе.'/>
                     <Input
                         label='логин'
@@ -79,7 +78,7 @@ function AuthPage(props:AuthPageProps) {
                         to='/register'
                         text='Зарегистрироваться'
                     />
-                </Card>
+                </Layout>
             </div>
             
         </div>

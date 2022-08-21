@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { completeRequest, getRequests, removeRequest } from '../../../apiFunctions/requestFuntcions';
-import RequestCard from '../../../components/desktop/RequestCard/RequestCard';
+import RequestCard from '../../../components/desktop/Card/RequestCard';
 import Spinner from '../../../components/desktop/Spinner/Spinner';
 import Switch from '../../../components/desktop/Switch/Switch';
 import Title2 from '../../../components/desktop/Title/Title2';
+import { completeRequest, getRequests, removeRequest } from '../../../service/requests';
 import { RequestProps } from '../../../service/types';
 import './mainpage.css'
 

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
-import { getRequests, WorkerInfoProps } from '../../../apiFunctions/requestFuntcions';
 import NavigationBar from '../../../components/desktop/Navigation/NavigationBar';
 import './mainpage.css'
 

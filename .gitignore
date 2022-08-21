@@ -25,3 +25,4 @@ yarn-error.log*
 /firebase.json
 /.firebase
 /src/apiFunctions/api.conf.ts
+/src/service/api.conf.ts

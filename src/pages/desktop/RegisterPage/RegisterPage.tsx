@@ -1,12 +1,11 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { register } from '../../../apiFunctions/requestFuntcions';
 import Button from '../../../components/desktop/Button/Button';
-import Card from '../../../components/desktop/Card/Card';
-import Header from '../../../components/desktop/Header/Header';
+import Layout from '../../../components/desktop/Layout/Layout';
 import Input from '../../../components/desktop/Input/Input';
 import Title2 from '../../../components/desktop/Title/Title2';
 import { useForm } from '../../../hooks/useForm';
+import { register } from '../../../service/auth';
 
 type WorkerRegisterProps = {
     password:string,
@@ -33,7 +32,6 @@ function RegisterPage(props:RegisterPageProps) {
 
     function handleSubmit(){
         register(formData, props.setErrorMessage , props.setSuccsessMessage)
-        // alert(JSON.stringify(formData))
         // navigate('/auth')
         
     }
@@ -41,7 +39,7 @@ function RegisterPage(props:RegisterPageProps) {
     return (
         <div className='page'>
             <div className='page__container'>
-                <Card>
+                <Layout>
                     <Title2 text='Зарегистрируйтесь, чтобы войти.'/>
 
                     <Input
@@ -77,7 +75,7 @@ function RegisterPage(props:RegisterPageProps) {
                          color="primary"
                     />
                     
-                </Card>
+                </Layout>
             </div>
             
         </div>

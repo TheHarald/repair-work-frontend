@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { postRequest, RequestData } from '../../../apiFunctions/requestFuntcions';
 import Button from '../../../components/desktop/Button/Button';
-import Card from '../../../components/desktop/Card/Card';
-import Header from '../../../components/desktop/Header/Header';
+import Layout from '../../../components/desktop/Layout/Layout';
 import Input from '../../../components/desktop/Input/Input';
 import IntervalPicker from '../../../components/desktop/Input/IntervalPicker';
 import TextArea from '../../../components/desktop/Input/TextArea';
 import Title2 from '../../../components/desktop/Title/Title2';
 import { useForm } from '../../../hooks/useForm';
 import "./createrequestpage.css"
+import { postRequest } from '../../../service/requests';
+import { RequestData } from '../../../service/types';
 
 type CreateRequestPageProps = {
     setErrorMessage:React.Dispatch<React.SetStateAction<string>>,
@@ -37,12 +37,10 @@ function CreateRequestPage(props:CreateRequestPageProps) {
 
     }
 
-
-
     return (
         <div className='page'>
             <div className='page__container'>
-                <Card>
+                <Layout>
                     <Title2 text='Заполните поля и отправьте заявку на ремонт.'/>
                     <Input 
                         label='Фамилия имя отчество' 
@@ -91,7 +89,7 @@ function CreateRequestPage(props:CreateRequestPageProps) {
                         color="primary" 
                     />
                     
-                </Card>
+                </Layout>
             </div>
         </div>
     );

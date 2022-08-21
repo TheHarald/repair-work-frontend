@@ -1,5 +1,4 @@
 import React from 'react';
-import Header from '../../../components/desktop/Header/Header';
 import RepairMan from '../../../components/svg/RepairMan';
 import "./startpage.css"
 import FileList3LineIcon from 'remixicon-react/FileList3LineIcon'

@@ -6,17 +6,31 @@
 
 .main-page{
     box-sizing: border-box;
-    min-width: 736px;
+    max-width: 736px;
     background: #fff;
     height: 100vh;
     padding: 20px;
     gap: 20px;
     display: flex;
     flex-direction: column;
+    width: 100%;
 }
 
 .main-page__requests{
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 10px;
+}
+
+.profile__container{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 40px;
+
+}
+
+.profile__info{
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
 }

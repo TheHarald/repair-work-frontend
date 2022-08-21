@@ -15,11 +15,13 @@
 
 .header-container{
     padding: 10px 0px;
-    min-width: 956px;
+    max-width: 956px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     box-sizing: border-box;
+    width: 100%;
+
 }
 
 .header__title{

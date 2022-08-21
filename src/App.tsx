@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import { Route, Routes, useNavigate } from "react-router-dom";
-import { getWorkerInfoByToken, WorkerInfoProps } from './apiFunctions/requestFuntcions';
 import Header from './components/desktop/Header/Header';
 import NavigationBar from './components/desktop/Navigation/NavigationBar';
 import NavigationButton from './components/desktop/Navigation/NavigationButton';
@@ -15,6 +14,7 @@ import ProfilePage from './pages/desktop/MainPage/ProfilePage';
 import RequestsPage from './pages/desktop/MainPage/RequestsPage';
 import RegisterPage from './pages/desktop/RegisterPage/RegisterPage';
 import StartPage from "./pages/desktop/StartPage/StartPage";
+import { WorkerInfoProps } from './service/types';
 
 function App() {
 
@@ -24,16 +24,6 @@ function App() {
   const [errorMessage, setErrorMessage] = useState('')
   const [succsessMessage, setSuccsessMessage] = useState('')
   
-  const navigate = useNavigate()
-  const [user,setUser] = useState<WorkerInfoProps>({
-    id:0,
-    worker_FIO:'',
-    login:'',
-    createdAt:'',
-    requestId:'',
-    updatedAt:''
-  })
-
   return (
     <div>
       <Spinner isVisible={isLoading}/>
@@ -54,7 +44,7 @@ function App() {
 
       <Header 
         setIsLoading={setIsLoading} 
-        />
+      />
 
       <Routes>
         <Route path="" element={<StartPage/>}/>

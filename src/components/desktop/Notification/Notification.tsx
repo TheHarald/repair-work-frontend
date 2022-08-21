@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import CloseButton from '../Button/CloseButton';
 import Title3 from '../Title/Title3';
 import './notification.css'
@@ -12,13 +12,18 @@ type NotificationProps = {
 
 function Notification(props:NotificationProps) {
 
-
-
     let notificationClassName = `notification`
 
     function handleClose(){
         props.setErrorMessage('')
     }
+
+    // useEffect(()=>{
+    //     setTimeout(()=>{
+    //         props.setErrorMessage('')
+    //         console.log('work');
+    //     }, 5000)
+    // },[props.text])
 
     const error = <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <circle opacity="0.7" cx="12" cy="12" r="10" fill="#F12B43"/>

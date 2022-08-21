@@ -1,22 +1,26 @@
+import { isEditable } from '@testing-library/user-event/dist/utils';
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import LoginBoxLineIcon from 'remixicon-react/LoginBoxLineIcon'
 import LogoutBoxLineIcon from 'remixicon-react/LogoutBoxLineIcon'
 import User3LineIcon from 'remixicon-react/User3LineIcon'
-import { getWorkerInfoByToken, WorkerInfoProps } from '../../../apiFunctions/requestFuntcions';
+import { getWorkerInfoByToken, login } from '../../../service/auth';
 import Divider from '../Divider/Divider';
 import "./header.css"
 
 type HeaderProps = {
-    // setUser: React.Dispatch<React.SetStateAction<WorkerInfoProps>>
-    setIsLoading:React.Dispatch<React.SetStateAction<boolean>>
-
+    setIsLoading:React.Dispatch<React.SetStateAction<boolean>>,
+    // setErrorMessage: React.Dispatch<React.SetStateAction<string>>
 }
 
 function Header(props:HeaderProps) {
 
     const navigate = useNavigate()
     const user = JSON.parse(localStorage.getItem('user') || '{}')
+
+    if(JSON.stringify(user) === '{}'){
+        console.log('token not found');
+    }
 
     function handleLogIn(){
         props.setIsLoading(true)
@@ -40,7 +44,6 @@ function Header(props:HeaderProps) {
         <header className='header' >
             <section className='header-container'>
                 <Link to={'/'} className='header__title'>Ремонтные заявки</Link>
-
                 {
                     user.login
                     ?
@@ -60,10 +63,6 @@ function Header(props:HeaderProps) {
                         <LoginBoxLineIcon size={24}  className='login-link__icon'/>
                     </Link>
                 }
-
-                
-
-                
             </section>
         </header>
     );
