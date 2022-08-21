@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { getRequests, takeRequest, WorkerInfoProps } from '../../../apiFunctions/requestFuntcions';
 import RequestCard from '../../../components/desktop/RequestCard/RequestCard';
 import Spinner from '../../../components/desktop/Spinner/Spinner';
+import Title2 from '../../../components/desktop/Title/Title2';
 import { RequestProps } from '../../../service/types';
 import './mainpage.css'
 
@@ -37,6 +38,7 @@ function RequestsPage(props:RequestPageProps) {
     
     return (
         <div className='main-page'>
+            <Title2 text='Активные заявки' />
             <div className='main-page__requests'>
                 {isLoading?
                 <Spinner isVisible={isLoading}/>

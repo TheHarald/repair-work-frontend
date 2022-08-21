@@ -28,6 +28,7 @@ function MyRequestsPage(props:MyRequestPageProps) {
          }).catch( error => console.log(error))
         
     }
+
     function handleComplete(id:number){
         completeRequest(user.id, id).then( (response:any) =>{
             props.setSuccsessMessage("Заявка завершена")
@@ -40,10 +41,9 @@ function MyRequestsPage(props:MyRequestPageProps) {
         setIsLoading(true)
         getRequests().then(
             (response:any) => {
-                let requests = response.data  //.filter( (item:any) => item.workerId === user.id && item.status !== 'completed')
+                let requests = response.data.filter( (item:any) => item.workerId === user.id)
                 setMyrequests(requests)
                 setIsLoading(false)
-                console.log(requests);
             }
         )
 
@@ -51,12 +51,15 @@ function MyRequestsPage(props:MyRequestPageProps) {
 
     
     function onShow(){
-        setIsShow(!isShow)
-        if(isShow){
-            console.log("show");
-            console.log(myRequests);
-        }
+        setIsShow(!isShow)   
+    }
 
+    function requestFilter(requests:RequestProps[]) {
+        if(isShow){
+            return requests
+        }else{
+            return requests.filter(item => item.status === 'in_work')
+        }
     }
     return (
         <div className='main-page'>
@@ -71,7 +74,7 @@ function MyRequestsPage(props:MyRequestPageProps) {
                 {isLoading?
                 <Spinner isVisible={isLoading}/>
                 :
-                myRequests.map( myRequest => {
+                requestFilter(myRequests).map( myRequest => {
                     return <RequestCard key={myRequest.id}
                         task={myRequest.request_task}
                         email={myRequest.email}
