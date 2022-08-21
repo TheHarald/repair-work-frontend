@@ -30,12 +30,11 @@ export async function postRequest(
         requestData)
             .then(response => {
                 console.log(response.data)
-
                 setSuccsessMessage('Заявка создана')
             }) 
             .catch(error => {
                 console.log(error)
-                setErrorMessage(error.response.data.message)
+                setErrorMessage(JSON.stringify(error.response.data.message))
             });
 }
 
